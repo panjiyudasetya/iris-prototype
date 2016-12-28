@@ -32,4 +32,28 @@ public class JSTask extends JSTaskExports {
         trigger_completed = taskJSON.getDouble("trigger_completed");
         context_completed = taskJSON.getDouble("context_completed");
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getJsCode() {
+        return jsCode;
+    }
+
+    public void setJsCode(String jsCode) {
+        this.jsCode = jsCode;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
 }

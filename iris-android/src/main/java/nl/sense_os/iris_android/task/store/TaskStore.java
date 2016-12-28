@@ -5,8 +5,8 @@ import android.support.annotation.NonNull;
 import org.json.JSONArray;
 import java.util.List;
 import nl.sense_os.iris_android.Iris;
-import nl.sense_os.iris_android.task.store.TaskStorage.ErrorListener.DeletionInputErrorListener;
-import nl.sense_os.iris_android.task.store.TaskStorage.ErrorListener.DeletionActionErrorListener;
+import nl.sense_os.iris_android.task.store.ErrorListener.DeletionInputErrorListener;
+import nl.sense_os.iris_android.task.store.ErrorListener.DeletionActionErrorListener;
 
 /**
  * Created by panjiyudasetya on 12/23/16.
@@ -26,7 +26,7 @@ public class TaskStore {
         this.taskLoader = taskLoader;
     }
 
-    public void loadTasks(TaskStorage.ErrorListener.AdditionErrorListener errorListener) {
+    public void loadTasks(ErrorListener.AdditionErrorListener errorListener) {
         List<Input> inputs = taskStorage.getAvailableInputs();
         List<Action> actions = taskStorage.getAvailableActions();
         List<Task> tasks = taskLoader.getTasks(inputs, actions);
@@ -75,7 +75,7 @@ public class TaskStore {
     }
 
     public JSONArray getAvailableActions() {
-        // TODO: should this conversino be done in one layer above?
+        // TODO: should this conversion be done in one layer above?
         JSONArray output = new JSONArray();
         List<Action> availableActions = taskStorage.getAvailableActions();
         for (Action action : availableActions) {

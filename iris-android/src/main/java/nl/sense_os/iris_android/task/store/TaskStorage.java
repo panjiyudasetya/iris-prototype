@@ -30,27 +30,6 @@ public class TaskStorage {
     private static final String TAG = "TASK_STORAGE";
     private static RealmConfiguration realmConfiguration;
 
-    public interface ErrorListener {
-
-        void unexpectedType(String description);
-
-        interface DeletionTaskErrorListener {
-            void deletingNonExistingTask();
-        }
-
-        interface DeletionActionErrorListener {
-            void deletingUnavailableAction();
-        }
-
-        interface DeletionInputErrorListener {
-            void deletingUnavailableInput();
-        }
-
-        interface AdditionErrorListener {
-            void addingTaskWithUnavailableInput(String inputName);
-        }
-    }
-
     public TaskStorage(@NonNull Context context) {
         if (realmConfiguration == null) {
             realmConfiguration = new RealmConfiguration.Builder(context)

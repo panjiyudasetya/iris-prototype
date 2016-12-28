@@ -8,5 +8,5 @@ import org.json.JSONObject;
 
 public interface TaskConverter {
     /** A contract method to convert an object into json object */
-    public JSONObject toJsonObject();
+    JSONObject toJsonObject();
 }

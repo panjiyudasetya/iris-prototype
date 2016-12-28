@@ -26,11 +26,12 @@ public class Task extends RealmObject implements TaskConverter {
 
     public Task() { }
 
-    public Task(String id, String desc, String jsCode, String action) {
+    public Task(String id, String desc, String jsCode, String action, RealmList<Input> requirements) {
         this.id = id;
         this.desc = desc;
         this.jsCode = jsCode;
         this.action = action;
+        this.requirements = requirements;
     }
 
     public String getId() {

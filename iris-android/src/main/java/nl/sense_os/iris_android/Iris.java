@@ -97,7 +97,7 @@ public abstract class Iris {
      *
      * @param name name of the new available Action
      */
-    public void registerAction(String name) {
+    public void registerAction(@NonNull String name) {
         //TODO: add version number of the available Action
         taskStore.insertOrUpdateAvailableActions(name);
     }
@@ -110,7 +110,7 @@ public abstract class Iris {
      * @param name name of the Action that should be removed
      * @param errorListener deletion error listener
      */
-    public void deregisterAction(String name, DeletionActionErrorListener errorListener) {
+    public void deregisterAction(@NonNull String name, @NonNull DeletionActionErrorListener errorListener) {
         // No version required, because the deletion only cares the name
         taskStore.deleteAvailableAction(name, errorListener);
     }

@@ -4,14 +4,10 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.eclipsesource.v8.V8;
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.List;
 
 import nl.sense_os.iris_android.BuildConfig;
 import nl.sense_os.iris_android.Iris;
-import nl.sense_os.iris_android.task.store.Input;
 
 /**
  * Created by panjiyudasetya on 12/23/16.
@@ -48,7 +44,7 @@ public class JSExecutor {
         jsLogger.setLogLevel(logLevel);
     }
 
-    public void execute(@NonNull JSTask jsTask, @NonNull List<Input> inputs, @NonNull JSExecutorErrorListener errorListener) {
+    public void execute(@NonNull JSTask jsTask, @NonNull JSONObject inputs, @NonNull JSExecutorErrorListener errorListener) {
         // TODO: do we need to clear jsContext? or just instantiate the new?
         V8 jsRuntime = V8.createV8Runtime();
 
@@ -94,7 +90,7 @@ public class JSExecutor {
         }
 
         if (irisCallback != null) {
-            irisCallback.onActionTriggered();
+            irisCallback.onActionTriggered((JSONObject) payload);
         }
     }
 
@@ -110,15 +106,9 @@ public class JSExecutor {
                 + "executeTask();";
     }
 
-    public void loadInput(@NonNull V8 jsRuntime, @NonNull List<Input> inputs) {
+    public void loadInput(@NonNull V8 jsRuntime, @NonNull JSONObject inputs) {
         try {
-            JSONArray jsonInput = new JSONArray();
-            for (int i = 0; i < inputs.size(); i++) {
-                Input input = inputs.get(i);
-                jsonInput.put(i, input.toJsonObject());
-            }
-
-            String script = String.format("var inputs = %s", jsonInput.toString());
+            String script = String.format("var inputs = %s", inputs.toString());
             // Inject inputs as a JSON object.
             // When value is injected one by one as string, then stringified number and number is indistinguishable.
             jsRuntime.executeScript(script);

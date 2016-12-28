@@ -3,6 +3,7 @@ package nl.sense_os.iris_android.task.store;
 import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
+
 import java.util.List;
 import nl.sense_os.iris_android.Iris;
 import nl.sense_os.iris_android.task.store.ErrorListener.DeletionInputErrorListener;
@@ -33,7 +34,7 @@ public class TaskStore {
 
         taskStorage.insertOrUpdateTasks(tasks, errorListener);
         // TODO: check if there are requirements that are changed and nofify
-        //delegate?.onRequirementsUpdated(requirements: <#T##[String : Any]#>)
+        //irisCallback.onRequirementsUpdated(new JSONObject());
     }
 
     public List<Task> getTasks() {
